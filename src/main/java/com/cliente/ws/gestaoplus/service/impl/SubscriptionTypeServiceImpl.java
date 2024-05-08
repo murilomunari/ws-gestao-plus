@@ -1,5 +1,6 @@
 package com.cliente.ws.gestaoplus.service.impl;
 
+import com.cliente.ws.gestaoplus.dto.SubscriptionTypeDTO;
 import com.cliente.ws.gestaoplus.exception.NotFoundException;
 import com.cliente.ws.gestaoplus.model.SubscriptionType;
 import com.cliente.ws.gestaoplus.repositories.SubscriptionTypeRepository;
@@ -31,8 +32,8 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
     }
 
     @Override
-    public SubscriptionType create(SubscriptionType subscriptionType) {
-        return null;
+    public SubscriptionType create(SubscriptionTypeDTO subscriptionTypeDTO) {
+        return subscriptionTypeRepository.save(SubscriptionType.);
     }
 
     @Override

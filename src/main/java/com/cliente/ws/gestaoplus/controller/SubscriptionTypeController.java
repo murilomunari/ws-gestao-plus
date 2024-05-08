@@ -1,5 +1,6 @@
 package com.cliente.ws.gestaoplus.controller;
 
+import com.cliente.ws.gestaoplus.dto.SubscriptionTypeDTO;
 import com.cliente.ws.gestaoplus.exception.NotFoundException;
 import com.cliente.ws.gestaoplus.model.SubscriptionType;
 import com.cliente.ws.gestaoplus.repositories.SubscriptionTypeRepository;
@@ -19,7 +20,7 @@ public class SubscriptionTypeController {
     @Autowired
     SubscriptionTypeService subscriptionTypeService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<SubscriptionType>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(subscriptionTypeService.findAll());
     }
@@ -27,6 +28,11 @@ public class SubscriptionTypeController {
     @GetMapping("/{id}")
     public ResponseEntity<SubscriptionType> findById(@PathVariable("id") Long id) {
             return ResponseEntity.status(HttpStatus.OK).body(subscriptionTypeService.findById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<SubscriptionType> create(@RequestBody SubscriptionTypeDTO subscriptionTypeDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(subscriptionTypeService.create(subscriptionTypeDTO));
     }
 
 }

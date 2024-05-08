@@ -1,16 +1,14 @@
 package com.cliente.ws.gestaoplus.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "subscription_type")
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
