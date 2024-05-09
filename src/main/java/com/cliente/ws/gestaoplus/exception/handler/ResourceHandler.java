@@ -1,5 +1,6 @@
 package com.cliente.ws.gestaoplus.exception.handler;
 
+import com.cliente.ws.gestaoplus.exception.BadRequestException;
 import com.cliente.ws.gestaoplus.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,13 @@ public class ResourceHandler {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<String> notFoundException(NotFoundException n){
         String errorMessage = n.getMessage();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> badRequestException(BadRequestException b){
+        String errorMessage = b.getMessage();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 }

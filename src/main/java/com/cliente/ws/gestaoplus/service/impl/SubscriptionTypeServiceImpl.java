@@ -1,6 +1,7 @@
 package com.cliente.ws.gestaoplus.service.impl;
 
 import com.cliente.ws.gestaoplus.dto.SubscriptionTypeDTO;
+import com.cliente.ws.gestaoplus.exception.BadRequestException;
 import com.cliente.ws.gestaoplus.exception.NotFoundException;
 import com.cliente.ws.gestaoplus.model.SubscriptionType;
 import com.cliente.ws.gestaoplus.repositories.SubscriptionTypeRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -33,7 +35,16 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Override
     public SubscriptionType create(SubscriptionTypeDTO subscriptionTypeDTO) {
-        return subscriptionTypeRepository.save(SubscriptionType.builder().build());
+        if (Objects.nonNull(subscriptionTypeDTO.getId())){
+            throw new BadRequestException("Id deve ser nulo");
+        }
+        return subscriptionTypeRepository.save(SubscriptionType.builder()
+                        .id(subscriptionTypeDTO.getId())
+                        .name(subscriptionTypeDTO.getName())
+                        .accessMonth(subscriptionTypeDTO.getAccessMonths())
+                        .price(subscriptionTypeDTO.getPrice())
+                        .productKey(subscriptionTypeDTO.getProductKey())
+                .build());
     }
 
     @Override
