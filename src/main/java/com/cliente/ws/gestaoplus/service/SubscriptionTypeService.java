@@ -2,9 +2,11 @@ package com.cliente.ws.gestaoplus.service;
 
 import com.cliente.ws.gestaoplus.dto.SubscriptionTypeDTO;
 import com.cliente.ws.gestaoplus.model.SubscriptionType;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface SubscriptionTypeService {
 
     List<SubscriptionType> findAll();

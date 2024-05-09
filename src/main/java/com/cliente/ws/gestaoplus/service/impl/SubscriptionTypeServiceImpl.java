@@ -33,7 +33,7 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Override
     public SubscriptionType create(SubscriptionTypeDTO subscriptionTypeDTO) {
-        return subscriptionTypeRepository.save(SubscriptionType.);
+        return subscriptionTypeRepository.save(SubscriptionType.builder().build());
     }
 
     @Override
