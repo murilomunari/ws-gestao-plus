@@ -17,7 +17,7 @@ public class ResourceHandler {
     }
 
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<String> badRequestException(BadRequestException b){
         String errorMessage = b.getMessage();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
