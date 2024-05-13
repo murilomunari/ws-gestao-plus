@@ -3,6 +3,7 @@ package com.cliente.ws.gestaoplus.service.impl;
 import com.cliente.ws.gestaoplus.dto.SubscriptionTypeDTO;
 import com.cliente.ws.gestaoplus.exception.BadRequestException;
 import com.cliente.ws.gestaoplus.exception.NotFoundException;
+import com.cliente.ws.gestaoplus.mapper.SubscriptionTypeMapper;
 import com.cliente.ws.gestaoplus.model.SubscriptionType;
 import com.cliente.ws.gestaoplus.repositories.SubscriptionTypeRepository;
 import com.cliente.ws.gestaoplus.service.SubscriptionTypeService;
@@ -34,31 +35,21 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
         if (Objects.nonNull(subscriptionTypeDTO.getId())){
             throw new BadRequestException("Id deve ser nulo");
         }
-        return subscriptionTypeRepository.save(SubscriptionType.builder()
-                        .id(subscriptionTypeDTO.getId())
-                        .name(subscriptionTypeDTO.getName())
-                        .accessMonth(subscriptionTypeDTO.getAccessMonths())
-                        .price(subscriptionTypeDTO.getPrice())
-                        .productKey(subscriptionTypeDTO.getProductKey())
-                .build());
+        return subscriptionTypeRepository.save(SubscriptionTypeMapper.fromDtoToEntity(subscriptionTypeDTO));
     }
 
     @Override
     public SubscriptionType update(Long id, SubscriptionTypeDTO subscriptionTypeDTO) {
-        SubscriptionType existingSubscriptionType = getSubscriptionType(id);
-
-        existingSubscriptionType.setName(subscriptionTypeDTO.getName());
-        existingSubscriptionType.setAccessMonth(subscriptionTypeDTO.getAccessMonths());
-        existingSubscriptionType.setPrice(subscriptionTypeDTO.getPrice());
-        existingSubscriptionType.setProductKey(subscriptionTypeDTO.getProductKey());
-
-        return subscriptionTypeRepository.save(existingSubscriptionType);
+        getSubscriptionType(id);
+        subscriptionTypeDTO.setId(id);
+        return subscriptionTypeRepository.save(SubscriptionTypeMapper.fromDtoToEntity(subscriptionTypeDTO));
     }
 
 
     @Override
     public void delete(Long id) {
-
+        getSubscriptionType(id);
+        subscriptionTypeRepository.deleteById(id);
     }
 
     private SubscriptionType getSubscriptionType(Long id) {
