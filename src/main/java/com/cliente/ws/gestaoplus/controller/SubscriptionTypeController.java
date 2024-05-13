@@ -19,7 +19,7 @@ import java.util.Objects;
 public class SubscriptionTypeController {
 
     @Autowired
-    SubscriptionTypeService subscriptionTypeService;
+    private SubscriptionTypeService subscriptionTypeService;
 
     @GetMapping
     public ResponseEntity<List<SubscriptionType>> findAll() {
