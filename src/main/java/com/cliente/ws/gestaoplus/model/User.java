@@ -1,10 +1,7 @@
 package com.cliente.ws.gestaoplus.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User implements Serializable {
 
     @Id
@@ -34,7 +32,7 @@ public class User implements Serializable {
     private LocalDate dtSubscription = LocalDate.now();
 
     @Column(name = "dt_expiration")
-    private LocalDate dtExpiration;
+    private LocalDate dtExpiration = LocalDate.now();
 
     @ManyToOne
     @JoinColumn(name = "user_type_id")

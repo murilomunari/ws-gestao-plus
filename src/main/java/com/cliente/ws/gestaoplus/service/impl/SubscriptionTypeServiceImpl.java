@@ -18,7 +18,7 @@ import java.util.Optional;
 public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Autowired
-    SubscriptionTypeRepository subscriptionTypeRepository;
+    private SubscriptionTypeRepository subscriptionTypeRepository;
 
     @Override
     public List<SubscriptionType> findAll() {
